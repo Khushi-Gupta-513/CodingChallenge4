@@ -97,3 +97,24 @@ const inventory = [
 // Example usage
 checkLowStock(inventory);
 
+// Function to calculate the total inventory value
+function calculateInventoryValue(inventory) {
+    return inventory.reduce((totalValue, product) => {
+        return totalValue + (product.price * product.quantity);
+    }, 0);
+}
+
+// Example inventory array
+const inventory = [
+    { name: "Laptop", price: 999.99, quantity: 3, lowStockLevel: 5 },
+    { name: "Smartphone", price: 599.99, quantity: 25, lowStockLevel: 10 },
+    { name: "Headphones", price: 149.99, quantity: 18, lowStockLevel: 20 },
+    { name: "Keyboard", price: 79.99, quantity: 30, lowStockLevel: 10 },
+    { name: "Mouse", price: 39.99, quantity: 40, lowStockLevel: 15 }
+];
+
+// Example usage
+const totalValue = calculateInventoryValue(inventory);
+console.log(`Total Inventory Value: $${totalValue.toFixed(2)}`);
+
+
