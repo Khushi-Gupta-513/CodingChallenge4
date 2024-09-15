@@ -30,6 +30,30 @@ const inventory = [
         quantity: 40,
         lowStockLevel: 15
     }
+    // Function to update product stock after sales
+function updateStock(product, unitsSold) {
+    // Subtract unitsSold from the product's quantity
+    product.quantity -= unitsSold;
+
+    // Check stock levels and log appropriate messages
+    if (product.quantity <= 0) {
+        console.log(`${product.name} is now out of stock.`);
+        product.quantity = 0;  // Ensures no negative quantities
+    } else if (product.quantity <= product.lowStockLevel) {
+        console.log(`${product.name} is now low on stock. Only ${product.quantity} units left.`);
+    } else {
+        console.log(`${product.name} updated. ${product.quantity} units remaining.`);
+    }
+}
+
+// Example usage
+updateStock({
+    name: "Laptop",
+    price: 999.99,
+    quantity: 15,
+    lowStockLevel: 5
+}, 12);
+
 
     // Function to display product details
 function displayProductDetails(product) {
