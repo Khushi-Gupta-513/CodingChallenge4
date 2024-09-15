@@ -117,4 +117,37 @@ const inventory = [
 const totalValue = calculateInventoryValue(inventory);
 console.log(`Total Inventory Value: $${totalValue.toFixed(2)}`);
 
+// Function to process a sale
+function processSale(inventory, productName, unitsSold) {
+    const product = inventory.find(p => p.name === productName);
+    
+    if (product) {
+        // Update stock and log the result
+        updateStock(product, unitsSold);
+    } else {
+        console.log(`Error: ${productName} is not in the inventory.`);
+    }
+}
+
+// Function to update product stock
+function updateStock(product, unitsSold) {
+    product.quantity = Math.max(product.quantity - unitsSold, 0);
+    const status = product.quantity === 0 ? 'out of stock' :
+                   product.quantity <= product.lowStockLevel ? 'low on stock' :
+                   'updated';
+    console.log(`${product.name} is now ${status}. ${product.quantity} units remaining.`);
+}
+
+// Example inventory array
+const inventory = [
+    { name: "Laptop", price: 999.99, quantity: 15, lowStockLevel: 5 },
+    { name: "Smartphone", price: 599.99, quantity: 25, lowStockLevel: 10 },
+    { name: "Headphones", price: 149.99, quantity: 50, lowStockLevel: 20 },
+    { name: "Keyboard", price: 79.99, quantity: 30, lowStockLevel: 10 },
+    { name: "Mouse", price: 39.99, quantity: 40, lowStockLevel: 15 }
+];
+
+// Example usage
+processSale(inventory, "Laptop", 10);
+processSale(inventory, "Tablet", 5);
 
